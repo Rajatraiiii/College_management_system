@@ -10,5 +10,12 @@
         "Course": "Devops",
         "Email": "krish@gmail.com",
         "Phone": "9999999999"
+    },
+    {
+        "ID": "103",
+        "Name": "Sallu",
+        "Course": "Maths",
+        "Email": "Rajat280@gmail.com",
+        "Phone": "7890903233"
     }
 ]

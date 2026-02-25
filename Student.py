@@ -21,18 +21,26 @@ def is_unique_sid(students, sid):
     return all(s["ID"] != sid for s in students)
 
 def add_student():
+    import sys
     students = load_data()
-    sid = input("Enter Student ID: ").strip()
-    
+
+    if len(sys.argv) > 6:
+        sid = sys.argv[3]
+        name = sys.argv[4]
+        course = sys.argv[5]
+        email = sys.argv[6]
+        phone = sys.argv[7] if len(sys.argv) > 7 else "NA"
+    else:
+        sid = input("Enter Student ID: ").strip()
+        name = input("Enter Student Name: ").strip()
+        course = input("Enter Course: ").strip()
+        email = input("Enter Email: ").strip()
+        phone = input("Enter Phone: ").strip()
+
     if not is_unique_sid(students, sid):
-        print("Student ID already exists! Try again.")
+        print("Student ID already exists!")
         return
-    
-    name = input("Enter Student Name: ").strip()
-    course = input("Enter Course: ").strip()
-    email = input("Enter Email: ").strip()
-    phone = input("Enter Phone: ").strip()
-    
+
     students.append({
         "ID": sid,
         "Name": name,
@@ -40,6 +48,7 @@ def add_student():
         "Email": email,
         "Phone": phone
     })
+
     save_data(students)
     print("Student Added Successfully")
 
@@ -115,37 +124,45 @@ def delete_student():
             return
     
     print("Student not found.")
-
 def student_menu():
-    while True:
-        print("\n--- Student Management ---")
-        print("1. Add Student")
-        print("2. View Students")
-        print("3. Search Student")
-        print("4. Update Student")
-        print("5. Delete Student")
-        print("6. Back")
+    import sys
 
-        try:
-            ch = int(input("Enter choice: "))
-        except ValueError:
-            print("Invalid input. Enter a number.")
-            continue
+    print("\n--- Student Management ---")
+    print("1. Add Student")
+    print("2. View Students")
+    print("3. Search Student")
+    print("4. Update Student")
+    print("5. Delete Student")
+    print("6. Back")
 
-        if ch == 1:
-            add_student()
-        elif ch == 2:
-            view_students()
-        elif ch == 3:
-            search_student()
-        elif ch == 4:
-            update_student()
-        elif ch == 5:
-            delete_student()
-        elif ch == 6:
-            break
-        else:
-            print("Invalid choice")
+    # ✅ Jenkins mode (no input)
+    if len(sys.argv) > 2:
+        ch = int(sys.argv[2])
+        print(f"Auto-selected choice: {ch}")
+    else:
+        # ✅ Local interactive mode
+        while True:
+            try:
+                ch = int(input("Enter choice: "))
+                break
+            except ValueError:
+                print("Invalid input. Enter a number.")
+
+    # Execute once (no infinite loop in Jenkins)
+    if ch == 1:
+        add_student()
+    elif ch == 2:
+        view_students()
+    elif ch == 3:
+        search_student()
+    elif ch == 4:
+        update_student()
+    elif ch == 5:
+        delete_student()
+    elif ch == 6:
+        return
+    else:
+        print("Invalid choice")
 
 if __name__ == "__main__":
     student_menu()

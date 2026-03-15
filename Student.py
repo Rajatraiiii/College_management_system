@@ -11,7 +11,6 @@ def load_data():
         return []
     except json.JSONDecodeError:
         return []
-
 def save_data(data):
     os.makedirs(os.path.dirname(FILE), exist_ok=True)
     with open(FILE, "w") as f:

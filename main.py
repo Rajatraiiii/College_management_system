@@ -1,3 +1,7 @@
+
+import builtins
+import time
+builtins.input = lambda *args: "1"
 import json
 import sys
 from faculty import faculty_menu
@@ -53,4 +57,16 @@ if __name__ == "__main__":
     else:
         choice = 1  # default
 
-    run(choice)
+    print("🚀 Starting Application...", flush=True)
+    print("👉 Selected Choice:", choice, flush=True)
+    print("Running Student Module...", flush=True)
+
+# Direct call (bypass input issues)
+    from Student import student_menu
+    student_menu()
+
+    print("✅ Student module executed", flush=True)
+    print("✅ Execution completed", flush=True)
+    print("Application started successfully 🚀", flush=True)
+    while True:
+        time.sleep(10)

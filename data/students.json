@@ -17,5 +17,12 @@
         "Course": "Maths",
         "Email": "Rajat280@gmail.com",
         "Phone": "7890903233"
+    },
+    {
+        "ID": "123",
+        "Name": "Rajat Rai",
+        "Course": "Software Testing",
+        "Email": "rajatrai@gmail.com",
+        "Phone": "9854312345"
     }
 ]

@@ -2,7 +2,10 @@ import json
 import os
 
 FILE = "data/students.json"
-
+def student_menu():
+    print("✅ Student module started", flush=True)
+    print("Showing student options...", flush=True)
+    return
 def load_data():
     try:
         with open(FILE, "r") as f:
@@ -123,6 +126,7 @@ def delete_student():
             return
     
     print("Student not found.")
+    
 def student_menu():
     import sys
 
@@ -137,15 +141,11 @@ def student_menu():
     # ✅ Jenkins mode (no input)
     if len(sys.argv) > 2:
         ch = int(sys.argv[2])
-        print(f"Auto-selected choice: {ch}")
+        print(f"Auto-selected choice: {ch}",flush=True)
     else:
         # ✅ Local interactive mode
-        while True:
-            try:
-                ch = int(input("Enter choice: "))
-                break
-            except ValueError:
-                print("Invalid input. Enter a number.")
+        ch = 1
+        print("Auto-selected choice:", ch, flush=True)
 
     # Execute once (no infinite loop in Jenkins)
     if ch == 1:

@@ -8,4 +8,4 @@ COPY . .
 
 RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]
